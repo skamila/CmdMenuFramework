@@ -1,4 +1,6 @@
-package skamila;
+package skamila.menuEntry;
+
+import skamila.Action;
 
 public class MenuEntryAction implements MenuEntry {
 
@@ -28,4 +30,10 @@ public class MenuEntryAction implements MenuEntry {
     public Action getAction() {
         return action;
     }
+
+    public int compareTo(MenuEntry menuEntry) {
+            return orderNumber - menuEntry.getOrderNumber();
+    }
 }
+
+
