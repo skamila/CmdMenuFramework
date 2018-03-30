@@ -1,6 +1,6 @@
-package skamila.menuEntry;
+package skamila.cmdMenuFramework.menuEntry;
 
-import skamila.Action;
+import skamila.cmdMenuFramework.Action;
 
 public class MenuEntryAction implements MenuEntry {
 

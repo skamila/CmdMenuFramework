@@ -1,4 +1,4 @@
-package skamila.menuEntry;
+package skamila.cmdMenuFramework.menuEntry;
 
 import java.util.ArrayList;
 

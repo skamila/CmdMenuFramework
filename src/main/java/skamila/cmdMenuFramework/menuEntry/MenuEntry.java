@@ -1,4 +1,4 @@
-package skamila.menuEntry;
+package skamila.cmdMenuFramework.menuEntry;
 
 public interface MenuEntry extends Comparable<MenuEntry> {
 
