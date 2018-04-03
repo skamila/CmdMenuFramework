@@ -1,13 +1,12 @@
-package skamila.menuPrinter;
+package skamila.cmdMenuFramework.menuPrinter;
 
+import skamila.cmdMenuFramework.menuPrinter.MenuPrinterStandard;
 import org.junit.jupiter.api.Test;
-import skamila.Action;
-import skamila.menuEntry.MenuEntry;
-import skamila.menuEntry.MenuEntryAction;
+import skamila.cmdMenuFramework.Action;
+import skamila.cmdMenuFramework.menuEntry.MenuEntry;
+import skamila.cmdMenuFramework.menuEntry.MenuEntryAction;
 
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MenuPrinterStandardTest {
 
