@@ -3,12 +3,9 @@ import skamila.cmdMenuFramework.menuEntry.MenuEntry;
 import skamila.cmdMenuFramework.menuEntry.MenuEntryAction;
 import skamila.cmdMenuFramework.menuEntry.MenuEntrySubmenu;
 import skamila.cmdMenuFramework.menuPrinter.MenuPrinter;
-import skamila.cmdMenuFramework.menuPrinter.MenuPrinterStandard;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static java.awt.SystemColor.menu;
 
 public class Menu {
 
@@ -46,10 +43,23 @@ public class Menu {
         }
     }
 
-    private int getChoice(){  // dorzucić wyjątki
+    private int getChoice(){
         Scanner scanner = new Scanner(System.in);
-        int choice = Integer.parseInt(scanner.nextLine()) - 1;
-        return choice;
+        String stringChoice;
+        int choice = 0;
+        boolean ifContinue = true;
+        do{
+            try {
+                stringChoice = scanner.nextLine();
+                choice = Integer.parseInt(stringChoice);
+                if (choice < 1 || choice >= activeMenu.size()) throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e){
+                System.out.println("Nie wpisałeś poprawnej liczby! Wybierz number od 1 do " + activeMenu.size());
+                continue;
+            }
+            ifContinue = false;
+        } while (ifContinue);
+        return choice - 1;
     }
 
 
