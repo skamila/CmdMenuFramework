@@ -1,7 +1,6 @@
 package skamila.cmdMenuFramework;
 
-public class Action {
+public interface Action {
 
-    public void action(){
-    }
+    void action();
 }
