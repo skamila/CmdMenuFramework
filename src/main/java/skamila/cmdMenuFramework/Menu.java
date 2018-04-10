@@ -7,6 +7,7 @@ import skamila.cmdMenuFramework.menuPrinter.MenuPrinter;
 import skamila.cmdMenuFramework.menuView.DataExtractor;
 import skamila.cmdMenuFramework.menuView.MenuView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,14 +23,13 @@ public class Menu {
         this.menuView = menuView;
         this.dataExtractor = dataExtractor;
         this.printer = printer;
-        // dołożyć koniec + koniec w podmenu
     }
 
     public void doMenu() {
 
-        printMenu();
         int choice;
         do {
+            printMenu();
             choice = getChoice();
             chooseEntry(choice);
         } while (activeMenu == menuEntries && choice != menuEntries.size() - 1);
@@ -42,11 +42,24 @@ public class Menu {
 
     private void chooseEntry(int choice) {
         if (activeMenu.get(choice) instanceof MenuEntryAction) {
-            ((MenuEntryAction) activeMenu.get(choice)).getAction().action();
+            doAction(choice);
         } else {
-            activeMenu = ((MenuEntrySubmenu) activeMenu.get(choice)).getMenuEntries();
-            printMenu();
+            chooseSubmenu(choice);
         }
+    }
+
+    private void doAction (int choice){
+        ((MenuEntryAction) activeMenu.get(choice)).getAction().action();
+        System.out.print("Naciśnij enter, aby kontynuować i powrócić do menu.");
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void chooseSubmenu (int choice){
+        activeMenu = ((MenuEntrySubmenu) activeMenu.get(choice)).getMenuEntries();
     }
 
     private int getChoice() {

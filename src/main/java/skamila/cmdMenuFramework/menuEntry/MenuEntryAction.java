@@ -8,11 +8,11 @@ public class MenuEntryAction implements MenuEntry {
     private String name;
     private Action action;
 
-    public MenuEntryAction(int _id, int _orderNumber, String _name, Action _action){
-        id = _id;
-        orderNumber = _orderNumber;
-        name = _name;
-        action = _action;
+    public MenuEntryAction(int id, int orderNumber, String name, Action action){
+        this.id = id;
+        this.orderNumber = orderNumber;
+        this.name = name;
+        this.action = action;
     }
 
     public int getId() {
