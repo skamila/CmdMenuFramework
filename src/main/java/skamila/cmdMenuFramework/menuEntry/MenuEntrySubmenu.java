@@ -8,11 +8,11 @@ public class MenuEntrySubmenu implements MenuEntry {
     private String name;
     private ArrayList<MenuEntry> menuEntries;
 
-    public MenuEntrySubmenu(int _id, int _orderNumber, String _name, ArrayList<MenuEntry> _menuEntries){
-        id = _id;
-        orderNumber = _orderNumber;
-        name = _name;
-        menuEntries = _menuEntries;
+    public MenuEntrySubmenu(int id, int orderNumber, String name, ArrayList<MenuEntry> menuEntries){
+        this.id = id;
+        this.orderNumber = orderNumber;
+        this.name = name;
+        this.menuEntries = menuEntries;
     }
 
     public int getId() {
