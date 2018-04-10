@@ -1,5 +1,6 @@
 package skamila.cmdMenuFramework;
 
+import skamila.cmdMenuFramework.input.Input;
 import skamila.cmdMenuFramework.menuEntry.MenuEntry;
 import skamila.cmdMenuFramework.menuEntry.MenuEntryAction;
 import skamila.cmdMenuFramework.menuEntry.MenuEntrySubmenu;
@@ -17,12 +18,14 @@ public class Menu {
     private MenuView menuView;
     private DataExtractor<ArrayList<MenuEntry>> dataExtractor;
     private MenuPrinter printer;
+    private Input input;
 
-    public Menu(ArrayList<MenuEntry> menuEntries, MenuView menuView, DataExtractor<ArrayList<MenuEntry>> dataExtractor, MenuPrinter printer) {
+    public Menu(ArrayList<MenuEntry> menuEntries, MenuView menuView, DataExtractor<ArrayList<MenuEntry>> dataExtractor, MenuPrinter printer, Input input) {
         this.activeMenu = menuEntries;
         this.menuView = menuView;
         this.dataExtractor = dataExtractor;
         this.printer = printer;
+        this.input = input;
     }
 
     public void doMenu() {
@@ -63,13 +66,14 @@ public class Menu {
     }
 
     private int getChoice() {
-        Scanner scanner = new Scanner(System.in);
+
         String stringChoice;
         int choice = 0;
+
         boolean ifContinue = true;
         do {
             try {
-                stringChoice = scanner.nextLine();
+                stringChoice = input.getInput();
                 choice = Integer.parseInt(stringChoice);
                 if (choice < 1 || choice >= activeMenu.size()) throw new IllegalArgumentException();
             } catch (IllegalArgumentException e) {
