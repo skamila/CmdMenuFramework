@@ -1,12 +1,18 @@
 package skamila.cmdMenuFramework;
 
 import org.junit.jupiter.api.Test;
+import skamila.cmdMenuFramework.input.ConsoleInput;
 import skamila.cmdMenuFramework.menuEntry.MenuEntry;
 import skamila.cmdMenuFramework.menuEntry.MenuEntryAction;
 import skamila.cmdMenuFramework.menuEntry.MenuEntrySubmenu;
 import skamila.cmdMenuFramework.menuPrinter.MenuPrinterStandard;
+import skamila.cmdMenuFramework.menuView.MenuView;
+import skamila.cmdMenuFramework.menuView.StandardDataExtractor;
+import skamila.cmdMenuFramework.menuView.StandardMenuView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -25,7 +31,14 @@ class MenuTest {
         menuLvl1.add(new MenuEntryAction (5,2,"nazwa1.2", mock(Action.class)));
         menuLvl1.add(new MenuEntryAction (6,3,"nazwa1.3", mock(Action.class)));
 
-//        Menu menu = new Menu (menuLvl1, new MenuPrinterStandard());
+        Menu menu = new Menu(
+                menuLvl1,
+                new StandardMenuView(),
+                new StandardDataExtractor(),
+                new MenuPrinterStandard(),
+                new ConsoleInput(new Scanner(System.in))
+        );
+
 //        menu.doMenu();
     }
 
