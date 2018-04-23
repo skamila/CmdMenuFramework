@@ -36,7 +36,7 @@ class MenuTest {
                 new StandardMenuView(),
                 new StandardDataExtractor(),
                 new MenuPrinterStandard(),
-                new ConsoleInput(new Scanner(System.in))
+                new ConsoleInput()
         );
 
 //        menu.doMenu();
