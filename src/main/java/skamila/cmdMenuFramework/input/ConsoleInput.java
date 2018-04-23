@@ -6,8 +6,8 @@ public class ConsoleInput implements Input {
 
     private Scanner scanner;
 
-    public ConsoleInput (Scanner scanner){
-        this.scanner = scanner;
+    public ConsoleInput (){
+        scanner = new Scanner(System.in);
     }
 
     @Override

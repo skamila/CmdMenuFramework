@@ -21,6 +21,7 @@ public class Menu {
     private Input input;
 
     public Menu(ArrayList<MenuEntry> menuEntries, MenuView menuView, DataExtractor<ArrayList<MenuEntry>> dataExtractor, MenuPrinter printer, Input input) {
+        this.menuEntries = menuEntries;
         this.activeMenu = menuEntries;
         this.menuView = menuView;
         this.dataExtractor = dataExtractor;
@@ -31,12 +32,18 @@ public class Menu {
     public void doMenu() {
 
         int choice;
+        boolean ifContinue;
+
         do {
             printMenu();
             choice = getChoice();
             chooseEntry(choice);
-        } while (activeMenu == menuEntries && choice != menuEntries.size() - 1);
-
+            ifContinue = false;
+            if (activeMenu != menuEntries && choice == activeMenu.size() - 1) {
+                activeMenu = menuEntries;
+                ifContinue = true;
+            }
+        } while (!(activeMenu == menuEntries && choice == activeMenu.size() - 1) || ifContinue);
     }
 
     private void printMenu() {
@@ -53,7 +60,7 @@ public class Menu {
 
     private void doAction (int choice){
         ((MenuEntryAction) activeMenu.get(choice)).getAction().action();
-        System.out.print("Naciśnij enter, aby kontynuować i powrócić do menu.");
+        System.out.println("\nNaciśnij enter, aby kontynuować.");
         try {
             System.in.read();
         } catch (IOException e) {
@@ -75,7 +82,7 @@ public class Menu {
             try {
                 stringChoice = input.getInput();
                 choice = Integer.parseInt(stringChoice);
-                if (choice < 1 || choice >= activeMenu.size()) throw new IllegalArgumentException();
+                if (choice < 1 || choice > activeMenu.size()) throw new IllegalArgumentException();
             } catch (IllegalArgumentException e) {
                 System.out.println("Nie wpisałeś poprawnej liczby! Wybierz number od 1 do " + activeMenu.size());
                 continue;
